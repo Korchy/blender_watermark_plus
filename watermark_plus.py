@@ -27,6 +27,23 @@ class WatermarkPlus:
     def _watermark_lv2(cls, scene, bpy_data):
         # add watermark level 2
         # NODES
+        image_001_0 = scene.node_tree.nodes.new('CompositorNodeImage')
+        image_001_0.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+        image_001_0.frame_duration = 1
+        image_001_0.frame_offset = -1
+        image_001_0.frame_start = 1
+        image_001_0.hide = False
+        image_001_0.location = (-280.0, -200.0)
+        image_001_0.mute = False
+        image_001_0.name = 'Image.001'
+        image_001_0.use_auto_refresh = False
+        image_001_0.use_custom_color = False
+        image_001_0.use_cyclic = False
+        image_001_0.use_straight_alpha_output = False
+        image_001_0.width = 210.0883026123047
+        image_001_0.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
+        image_001_0.outputs[1].default_value = 0.0
+
         node_tree1 = bpy_data.node_groups.get('Watermark Level 2')
         if not node_tree1:
             node_tree1 = bpy_data.node_groups.new('Watermark Level 2', 'CompositorNodeTree')
@@ -34,17 +51,17 @@ class WatermarkPlus:
             node_tree1.inputs.new('NodeSocketColor', 'Render Layers')
             node_tree1.inputs.new('NodeSocketColor', 'Watermark Image')
             node_tree1.inputs.new('NodeSocketFloat', 'Scale')
-            node_tree1.inputs.new('NodeSocketFloat', 'Rotate (deg)')
+            node_tree1.inputs.new('NodeSocketFloat', 'Rotation (deg)')
             node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
             node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
             node_tree1.inputs.new('NodeSocketShader', '# Additional params')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity All')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity 0-25% ')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity 25-50%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity 50-75%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity 75-98%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensivity 98-100%')
-            node_tree1.inputs.new('NodeSocketFloat', 'blur Watermark')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 0-25% ')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 25-50%')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 50-75%')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 75-98%')
+            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 98-100%')
+            node_tree1.inputs.new('NodeSocketFloat', 'Blur')
             node_tree1.inputs.new('NodeSocketFloat', 'Multiply Effect')
             node_tree1.inputs.new('NodeSocketFloat', 'Blur Mask')
             # OUTPUTS
@@ -109,7 +126,7 @@ class WatermarkPlus:
             transform_1.hide = False
             transform_1.label = 'transform'
             transform_1.label_size = 20
-            transform_1.location = (-900.0, -380.0)
+            transform_1.location = (-880.0, -220.0)
             transform_1.mute = False
             transform_1.name = 'transform'
             transform_1.shrink = True
@@ -121,12 +138,12 @@ class WatermarkPlus:
             frame_001_1.hide = False
             frame_001_1.label = 'blur'
             frame_001_1.label_size = 20
-            frame_001_1.location = (0.0, -240.0)
+            frame_001_1.location = (-60.0, -240.0)
             frame_001_1.mute = False
             frame_001_1.name = 'Frame.001'
             frame_001_1.shrink = True
             frame_001_1.use_custom_color = False
-            frame_001_1.width = 452.8358154296875
+            frame_001_1.width = 372.8358154296875
 
             colorramp_004_1 = node_tree1.nodes.new('CompositorNodeValToRGB')
             colorramp_004_1.parent = node_tree1.nodes.get('Frame')
@@ -1294,6 +1311,30 @@ class WatermarkPlus:
             math_004_1.inputs[2].default_value = 0.0
             math_004_1.outputs[0].default_value = 0.0
 
+            group_input_1 = node_tree1.nodes.new('NodeGroupInput')
+            group_input_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            group_input_1.hide = False
+            group_input_1.location = (-1680.0, 20.0)
+            group_input_1.mute = False
+            group_input_1.name = 'Group Input'
+            group_input_1.use_custom_color = False
+            group_input_1.width = 140.0
+            group_input_1.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
+            group_input_1.outputs[1].default_value = (0.0, 0.0, 0.0, 1.0)
+            group_input_1.outputs[2].default_value = 0.0
+            group_input_1.outputs[3].default_value = 0.0
+            group_input_1.outputs[4].default_value = 0.0
+            group_input_1.outputs[5].default_value = 0.0
+            group_input_1.outputs[6].default_value = 0.0
+            group_input_1.outputs[8].default_value = 0.0
+            group_input_1.outputs[9].default_value = 0.0
+            group_input_1.outputs[10].default_value = 0.0
+            group_input_1.outputs[11].default_value = 0.0
+            group_input_1.outputs[12].default_value = 0.0
+            group_input_1.outputs[13].default_value = 0.0
+            group_input_1.outputs[14].default_value = 0.0
+            group_input_1.outputs[15].default_value = 0.0
+
             math_001_1 = node_tree1.nodes.new('CompositorNodeMath')
             math_001_1.parent = node_tree1.nodes.get('transform')
             math_001_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1420,22 +1461,6 @@ class WatermarkPlus:
             transform_1.inputs[4].default_value = 1.399999976158142
             transform_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            translate_1 = node_tree1.nodes.new('CompositorNodeTranslate')
-            translate_1.parent = node_tree1.nodes.get('transform')
-            translate_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            translate_1.hide = False
-            translate_1.location = (-180.0, 140.0)
-            translate_1.mute = False
-            translate_1.name = 'Translate'
-            translate_1.use_custom_color = False
-            translate_1.use_relative = False
-            translate_1.width = 140.0
-            translate_1.wrap_axis = 'BOTH'
-            translate_1.inputs[0].default_value = (1.0, 1.0, 1.0, 1.0)
-            translate_1.inputs[1].default_value = 0.0
-            translate_1.inputs[2].default_value = 0.0
-            translate_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
-
             math_011_1 = node_tree1.nodes.new('CompositorNodeMath')
             math_011_1.parent = node_tree1.nodes.get('transform')
             math_011_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1468,30 +1493,6 @@ class WatermarkPlus:
             alpha_over_005_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             alpha_over_005_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            group_input_1 = node_tree1.nodes.new('NodeGroupInput')
-            group_input_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            group_input_1.hide = False
-            group_input_1.location = (-1720.0, 20.0)
-            group_input_1.mute = False
-            group_input_1.name = 'Group Input'
-            group_input_1.use_custom_color = False
-            group_input_1.width = 140.0
-            group_input_1.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
-            group_input_1.outputs[1].default_value = (0.0, 0.0, 0.0, 1.0)
-            group_input_1.outputs[2].default_value = 0.0
-            group_input_1.outputs[3].default_value = 0.0
-            group_input_1.outputs[4].default_value = 0.0
-            group_input_1.outputs[5].default_value = 0.0
-            group_input_1.outputs[7].default_value = 0.0
-            group_input_1.outputs[8].default_value = 0.0
-            group_input_1.outputs[9].default_value = 0.0
-            group_input_1.outputs[10].default_value = 0.0
-            group_input_1.outputs[11].default_value = 0.0
-            group_input_1.outputs[12].default_value = 0.0
-            group_input_1.outputs[13].default_value = 0.0
-            group_input_1.outputs[14].default_value = 0.0
-            group_input_1.outputs[15].default_value = 0.0
-
             set_alpha_1 = node_tree1.nodes.new('CompositorNodeSetAlpha')
             set_alpha_1.parent = node_tree1.nodes.get('transform')
             set_alpha_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1504,6 +1505,22 @@ class WatermarkPlus:
             set_alpha_1.inputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
             set_alpha_1.inputs[1].default_value = 1.0
             set_alpha_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
+
+            translate_1 = node_tree1.nodes.new('CompositorNodeTranslate')
+            translate_1.parent = node_tree1.nodes.get('transform')
+            translate_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            translate_1.hide = True
+            translate_1.location = (-180.0, -20.0)
+            translate_1.mute = False
+            translate_1.name = 'Translate'
+            translate_1.use_custom_color = False
+            translate_1.use_relative = False
+            translate_1.width = 140.0
+            translate_1.wrap_axis = 'BOTH'
+            translate_1.inputs[0].default_value = (1.0, 1.0, 1.0, 1.0)
+            translate_1.inputs[1].default_value = 0.0
+            translate_1.inputs[2].default_value = 0.0
+            translate_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             blur_1 = node_tree1.nodes.new('CompositorNodeBlur')
             blur_1.parent = node_tree1.nodes.get('Frame.001')
@@ -1534,7 +1551,7 @@ class WatermarkPlus:
             math_002_1.parent = node_tree1.nodes.get('Frame.001')
             math_002_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             math_002_1.hide = True
-            math_002_1.location = (-140.0, -194.328369140625)
+            math_002_1.location = (-60.0, -140.0)
             math_002_1.mute = False
             math_002_1.name = 'Math.002'
             math_002_1.operation = 'MULTIPLY'
@@ -1588,7 +1605,7 @@ class WatermarkPlus:
             node_tree1.links.new(math_003_1.outputs[0], mix_011_1.inputs[0])
             node_tree1.links.new(group_input_1.outputs[14], math_003_1.inputs[0])
             node_tree1.links.new(math_004_1.outputs[0], mix_012_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[7], math_004_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[6], math_004_1.inputs[0])
             node_tree1.links.new(math_002_1.outputs[0], blur_1.inputs[1])
             node_tree1.links.new(math_005_1.outputs[0], blur_001_1.inputs[1])
             node_tree1.links.new(math_005_1.outputs[0], blur_002_1.inputs[1])
@@ -1645,7 +1662,7 @@ class WatermarkPlus:
             node_tree1.links.new(group_input_1.outputs[1], translate_1.inputs[0])
             node_tree1.links.new(translate_1.outputs[0], transform_1.inputs[0])
             node_tree1.links.new(group_006_1.outputs[0], transform_1.inputs[3])
-            node_tree1.links.new(group_input_1.outputs[6], group_output_1.inputs[1])
+            node_tree1.links.new(group_input_1.outputs[7], group_output_1.inputs[1])
             node_tree1.links.new(alpha_over_005_1.outputs[0], set_alpha_1.inputs[0])
             node_tree1.links.new(group_input_1.outputs[0], math_011_1.inputs[0])
             node_tree1.links.new(math_011_1.outputs[0], alpha_over_005_1.inputs[1])
@@ -1667,7 +1684,7 @@ class WatermarkPlus:
         watermark_0.inputs[3].default_value = 45.0
         watermark_0.inputs[4].default_value = 0.0
         watermark_0.inputs[5].default_value = 0.0
-        watermark_0.inputs[7].default_value = 99.0
+        watermark_0.inputs[6].default_value = 99.0
         watermark_0.inputs[8].default_value = 94.0
         watermark_0.inputs[9].default_value = 94.0
         watermark_0.inputs[10].default_value = 95.0
@@ -1682,23 +1699,6 @@ class WatermarkPlus:
         watermark_0.outputs[4].default_value = (0.0, 0.0, 0.0, 0.0)
         watermark_0.outputs[5].default_value = (0.0, 0.0, 0.0, 0.0)
         watermark_0.outputs[6].default_value = (0.0, 0.0, 0.0, 0.0)
-
-        image_001_0 = scene.node_tree.nodes.new('CompositorNodeImage')
-        image_001_0.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-        image_001_0.frame_duration = 1
-        image_001_0.frame_offset = -1
-        image_001_0.frame_start = 1
-        image_001_0.hide = False
-        image_001_0.location = (-280.0, -220.0)
-        image_001_0.mute = False
-        image_001_0.name = 'Image.001'
-        image_001_0.use_auto_refresh = False
-        image_001_0.use_custom_color = False
-        image_001_0.use_cyclic = False
-        image_001_0.use_straight_alpha_output = False
-        image_001_0.width = 210.0883026123047
-        image_001_0.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
-        image_001_0.outputs[1].default_value = 0.0
 
         # LINKS
         scene.node_tree.links.new(image_001_0.outputs[0], watermark_0.inputs[1])
