@@ -4,6 +4,8 @@
 # GitHub
 #   https://github.com/Korchy/blender_watermark_plus
 
+import bpy
+from bpy.props import IntProperty
 from bpy.types import Operator
 from bpy.utils import register_class, unregister_class
 from .watermark_plus import WatermarkPlus
@@ -15,13 +17,29 @@ class WATERMARK_PLUS_OT_add_watermark(Operator):
     bl_description = 'Add watermark to render'
     bl_options = {'REGISTER', 'UNDO'}
 
+    level: IntProperty(
+        name='Level',
+        subtype='UNSIGNED',
+        min=1,
+        max=2,
+        default=1
+    )
+
     def execute(self, context):
-        WatermarkPlus.add_watermark()
+        # add watermark
+        WatermarkPlus.add_watermark(
+            scene=context.scene,
+            bpy_data=bpy.data,
+            level=self.level
+        )
         return {'FINISHED'}
 
     @classmethod
     def poll(cls, context):
-        return True
+        if bpy.context.scene.node_tree and bpy.context.scene.use_nodes:
+            return True
+        else:
+            return False
 
 
 def register():

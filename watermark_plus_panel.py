@@ -16,7 +16,11 @@ class WATERMARK_PLUS_PT_panel_3d_view(Panel):
     bl_category = 'Watermark Plus'
 
     def draw(self, context):
-        self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE')
+        self.layout.label(text='Add Watermark')
+        operator = self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE', text='Watermark Level 1')
+        operator.level = 1
+        operator = self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE', text='Watermark Level 2')
+        operator.level = 2
 
 
 class WATERMARK_PLUS_PT_panel_shader_editor(Panel):
@@ -27,7 +31,11 @@ class WATERMARK_PLUS_PT_panel_shader_editor(Panel):
     bl_category = 'Watermark Plus'
 
     def draw(self, context):
-        self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE')
+        self.layout.label(text='Add Watermark')
+        operator = self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE', text='Watermark Level 1')
+        operator.level = 1
+        operator = self.layout.operator('watermark_plus.add_watermark', icon='OUTLINER_DATA_LIGHTPROBE', text='Watermark Level 2')
+        operator.level = 2
 
 
 def register():
