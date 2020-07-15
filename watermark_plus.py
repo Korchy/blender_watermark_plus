@@ -12,16 +12,34 @@ class WatermarkPlus:
     @classmethod
     def add_watermark(cls, scene, bpy_data, level=1):
         # add watermark to render
-        if level == 1:
-            cls._watermark_lv1(scene=scene, bpy_data=bpy_data)
-        elif level == 2:
-            cls._watermark_lv2(scene=scene, bpy_data=bpy_data)
+        if level == 2:
+            watermark_nodegroup, image_node = cls._watermark_lv2(scene=scene, bpy_data=bpy_data)
+        else:   # level = 1
+            watermark_nodegroup, image_node = cls._watermark_lv1(scene=scene, bpy_data=bpy_data)
+        # locate watermark nodegroup under the Composite node and reconnect input Composite node link
+        composite_node = cls._composite_node(scene=scene)
+        if composite_node:
+            # location
+            watermark_nodegroup.location = (composite_node.location.x, composite_node.location.y - 200)
+            image_node.location = (composite_node.location.x - 250, composite_node.location.y - 400)
+            # connect
+            link_to_composite = next(iter(composite_node.inputs['Image'].links), None)
+            if link_to_composite:
+                from_node_to_composite = link_to_composite.from_socket
+                if from_node_to_composite != watermark_nodegroup.outputs['Image']:
+                    scene.node_tree.links.new(from_node_to_composite, watermark_nodegroup.inputs['Render Layers'])
+            scene.node_tree.links.new(watermark_nodegroup.outputs['Image'], composite_node.inputs['Image'])
+        viewer_node = cls._viewer_node(scene=scene)
+        # connect to Viewer node
+        if viewer_node:
+            scene.node_tree.links.new(watermark_nodegroup.outputs['Image'], viewer_node.inputs['Image'])
 
     @classmethod
     def _watermark_lv1(cls, scene, bpy_data):
         # add watermark level 1
         print('lv 1')
         # todo
+        return None, None
 
     @classmethod
     def _watermark_lv2(cls, scene, bpy_data):
@@ -1658,7 +1676,7 @@ class WatermarkPlus:
         watermark_0.hide = False
         watermark_0.location = (0.0, 0.0)
         watermark_0.mute = False
-        watermark_0.name = 'Watermark'
+        watermark_0.name = 'Watermark_lv2'
         watermark_0.use_custom_color = False
         watermark_0.width = 230.7401123046875
         watermark_0.inputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
@@ -1702,3 +1720,15 @@ class WatermarkPlus:
 
         # LINKS
         scene.node_tree.links.new(image_001_0.outputs[0], watermark_0.inputs[1])
+
+        return watermark_0, image_001_0
+
+    @staticmethod
+    def _composite_node(scene):
+        # get composite node
+        return next((node for node in scene.node_tree.nodes if node.bl_idname == 'CompositorNodeComposite'), None)
+
+    @staticmethod
+    def _viewer_node(scene):
+        # get viewer node
+        return next((node for node in scene.node_tree.nodes if node.bl_idname == 'CompositorNodeViewer'), None)
