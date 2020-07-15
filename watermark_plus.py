@@ -27,23 +27,6 @@ class WatermarkPlus:
     def _watermark_lv2(cls, scene, bpy_data):
         # add watermark level 2
         # NODES
-        image_001_0 = scene.node_tree.nodes.new('CompositorNodeImage')
-        image_001_0.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-        image_001_0.frame_duration = 1
-        image_001_0.frame_offset = -1
-        image_001_0.frame_start = 1
-        image_001_0.hide = False
-        image_001_0.location = (-280.0, -200.0)
-        image_001_0.mute = False
-        image_001_0.name = 'Image.001'
-        image_001_0.use_auto_refresh = False
-        image_001_0.use_custom_color = False
-        image_001_0.use_cyclic = False
-        image_001_0.use_straight_alpha_output = False
-        image_001_0.width = 210.0883026123047
-        image_001_0.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
-        image_001_0.outputs[1].default_value = 0.0
-
         node_tree1 = bpy_data.node_groups.get('Watermark Level 2')
         if not node_tree1:
             node_tree1 = bpy_data.node_groups.new('Watermark Level 2', 'CompositorNodeTree')
@@ -55,13 +38,13 @@ class WatermarkPlus:
             node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
             node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
+            node_tree1.inputs.new('NodeSocketFloat', 'Blur')
             node_tree1.inputs.new('NodeSocketShader', '# Additional params')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity 0-25% ')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity 25-50%')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity 50-75%')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity 75-98%')
             node_tree1.inputs.new('NodeSocketFloat', 'Intensity 98-100%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Blur')
             node_tree1.inputs.new('NodeSocketFloat', 'Multiply Effect')
             node_tree1.inputs.new('NodeSocketFloat', 'Blur Mask')
             # OUTPUTS
@@ -1326,7 +1309,7 @@ class WatermarkPlus:
             group_input_1.outputs[4].default_value = 0.0
             group_input_1.outputs[5].default_value = 0.0
             group_input_1.outputs[6].default_value = 0.0
-            group_input_1.outputs[8].default_value = 0.0
+            group_input_1.outputs[7].default_value = 0.0
             group_input_1.outputs[9].default_value = 0.0
             group_input_1.outputs[10].default_value = 0.0
             group_input_1.outputs[11].default_value = 0.0
@@ -1601,7 +1584,7 @@ class WatermarkPlus:
             node_tree1.links.new(math_1.outputs[0], transform_1.inputs[1])
             node_tree1.links.new(math_001_1.outputs[0], transform_1.inputs[2])
             node_tree1.links.new(group_input_1.outputs[3], group_006_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[13], math_002_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[7], math_002_1.inputs[0])
             node_tree1.links.new(math_003_1.outputs[0], mix_011_1.inputs[0])
             node_tree1.links.new(group_input_1.outputs[14], math_003_1.inputs[0])
             node_tree1.links.new(math_004_1.outputs[0], mix_012_1.inputs[0])
@@ -1636,17 +1619,17 @@ class WatermarkPlus:
             node_tree1.links.new(colorramp_002_1.outputs[0], rgb_curves_006_1.inputs[1])
             node_tree1.links.new(rgb_curves_008_1.outputs[0], blur_003_1.inputs[0])
             node_tree1.links.new(rgb_curves_009_1.outputs[0], blur_005_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[8], math_009_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[9], math_008_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[10], math_007_1.inputs[0])
-            node_tree1.links.new(group_input_1.outputs[11], math_006_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[9], math_009_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[10], math_008_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[11], math_007_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[12], math_006_1.inputs[0])
             node_tree1.links.new(math_006_1.outputs[0], rgb_curves_009_1.inputs[2])
             node_tree1.links.new(math_007_1.outputs[0], rgb_curves_006_1.inputs[2])
             node_tree1.links.new(math_008_1.outputs[0], rgb_curves_008_1.inputs[2])
             node_tree1.links.new(math_009_1.outputs[0], rgb_curves_007_1.inputs[2])
             node_tree1.links.new(math_010_1.outputs[0], rgb_curves_1.inputs[2])
             node_tree1.links.new(invert_006_1.outputs[0], mix_006_1.inputs[2])
-            node_tree1.links.new(group_input_1.outputs[12], math_010_1.inputs[0])
+            node_tree1.links.new(group_input_1.outputs[13], math_010_1.inputs[0])
             node_tree1.links.new(colorramp_004_1.outputs[0], group_004_1.inputs[0])
             node_tree1.links.new(colorramp_001_1.outputs[0], group_001_1.inputs[0])
             node_tree1.links.new(colorramp_002_1.outputs[0], group_002_1.inputs[0])
@@ -1662,7 +1645,7 @@ class WatermarkPlus:
             node_tree1.links.new(group_input_1.outputs[1], translate_1.inputs[0])
             node_tree1.links.new(translate_1.outputs[0], transform_1.inputs[0])
             node_tree1.links.new(group_006_1.outputs[0], transform_1.inputs[3])
-            node_tree1.links.new(group_input_1.outputs[7], group_output_1.inputs[1])
+            node_tree1.links.new(group_input_1.outputs[8], group_output_1.inputs[1])
             node_tree1.links.new(alpha_over_005_1.outputs[0], set_alpha_1.inputs[0])
             node_tree1.links.new(group_input_1.outputs[0], math_011_1.inputs[0])
             node_tree1.links.new(math_011_1.outputs[0], alpha_over_005_1.inputs[1])
@@ -1685,12 +1668,12 @@ class WatermarkPlus:
         watermark_0.inputs[4].default_value = 0.0
         watermark_0.inputs[5].default_value = 0.0
         watermark_0.inputs[6].default_value = 99.0
-        watermark_0.inputs[8].default_value = 94.0
+        watermark_0.inputs[7].default_value = 1.0
         watermark_0.inputs[9].default_value = 94.0
-        watermark_0.inputs[10].default_value = 95.0
-        watermark_0.inputs[11].default_value = 90.0
-        watermark_0.inputs[12].default_value = 96.0
-        watermark_0.inputs[13].default_value = 1.0
+        watermark_0.inputs[10].default_value = 94.0
+        watermark_0.inputs[11].default_value = 95.0
+        watermark_0.inputs[12].default_value = 90.0
+        watermark_0.inputs[13].default_value = 96.0
         watermark_0.inputs[14].default_value = 0.0
         watermark_0.inputs[15].default_value = 2.0
         watermark_0.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
@@ -1699,6 +1682,23 @@ class WatermarkPlus:
         watermark_0.outputs[4].default_value = (0.0, 0.0, 0.0, 0.0)
         watermark_0.outputs[5].default_value = (0.0, 0.0, 0.0, 0.0)
         watermark_0.outputs[6].default_value = (0.0, 0.0, 0.0, 0.0)
+
+        image_001_0 = scene.node_tree.nodes.new('CompositorNodeImage')
+        image_001_0.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+        image_001_0.frame_duration = 1
+        image_001_0.frame_offset = -1
+        image_001_0.frame_start = 1
+        image_001_0.hide = False
+        image_001_0.location = (-280.0, -200.0)
+        image_001_0.mute = False
+        image_001_0.name = 'Image.001'
+        image_001_0.use_auto_refresh = False
+        image_001_0.use_custom_color = False
+        image_001_0.use_cyclic = False
+        image_001_0.use_straight_alpha_output = False
+        image_001_0.width = 210.0883026123047
+        image_001_0.outputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
+        image_001_0.outputs[1].default_value = 0.0
 
         # LINKS
         scene.node_tree.links.new(image_001_0.outputs[0], watermark_0.inputs[1])
