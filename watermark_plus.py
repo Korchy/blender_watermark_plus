@@ -1399,23 +1399,6 @@ class WatermarkPlus:
             mix_009_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_009_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            mix_004_1 = node_tree1.nodes.new('CompositorNodeMixRGB')
-            mix_004_1.parent = node_tree1.nodes.get('Frame.002')
-            mix_004_1.blend_type = 'DIVIDE'
-            mix_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            mix_004_1.hide = True
-            mix_004_1.location = (300.0, -180.0)
-            mix_004_1.mute = False
-            mix_004_1.name = 'Mix.004'
-            mix_004_1.use_alpha = False
-            mix_004_1.use_clamp = False
-            mix_004_1.use_custom_color = False
-            mix_004_1.width = 140.0
-            mix_004_1.inputs[0].default_value = 1.0
-            mix_004_1.inputs[1].default_value = (1.0, 1.0, 1.0, 1.0)
-            mix_004_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
-            mix_004_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
-
             alpha_over_003_1 = node_tree1.nodes.new('CompositorNodeAlphaOver')
             alpha_over_003_1.parent = node_tree1.nodes.get('Frame.002')
             alpha_over_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1699,6 +1682,22 @@ class WatermarkPlus:
             mix_008_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_008_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
+            math_003_1 = node_tree1.nodes.new('CompositorNodeMath')
+            math_003_1.parent = node_tree1.nodes.get('Frame.003')
+            math_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            math_003_1.hide = True
+            math_003_1.location = (-136.178955078125, -111.76119995117188)
+            math_003_1.mute = False
+            math_003_1.name = 'Math.003'
+            math_003_1.operation = 'MULTIPLY'
+            math_003_1.use_clamp = False
+            math_003_1.use_custom_color = False
+            math_003_1.width = 140.0
+            math_003_1.inputs[0].default_value = 1.0
+            math_003_1.inputs[1].default_value = 0.10000000149011612
+            math_003_1.inputs[2].default_value = 0.0
+            math_003_1.outputs[0].default_value = 0.0
+
             mix_011_1 = node_tree1.nodes.new('CompositorNodeMixRGB')
             mix_011_1.parent = node_tree1.nodes.get('Frame.003')
             mix_011_1.blend_type = 'MULTIPLY'
@@ -1846,6 +1845,23 @@ class WatermarkPlus:
             math_1.inputs[2].default_value = 0.0
             math_1.outputs[0].default_value = 0.0
 
+            transform_1 = node_tree1.nodes.new('CompositorNodeTransform')
+            transform_1.parent = node_tree1.nodes.get('transform')
+            transform_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            transform_1.filter_type = 'NEAREST'
+            transform_1.hide = False
+            transform_1.location = (100.0, -40.0)
+            transform_1.mute = False
+            transform_1.name = 'Transform'
+            transform_1.use_custom_color = False
+            transform_1.width = 140.0
+            transform_1.inputs[0].default_value = (0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)
+            transform_1.inputs[1].default_value = 0.0
+            transform_1.inputs[2].default_value = 0.0
+            transform_1.inputs[3].default_value = 0.7853981852531433
+            transform_1.inputs[4].default_value = 1.399999976158142
+            transform_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
+
             translate_1 = node_tree1.nodes.new('CompositorNodeTranslate')
             translate_1.parent = node_tree1.nodes.get('transform')
             translate_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1907,38 +1923,22 @@ class WatermarkPlus:
             alpha_over_005_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             alpha_over_005_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            transform_1 = node_tree1.nodes.new('CompositorNodeTransform')
-            transform_1.parent = node_tree1.nodes.get('transform')
-            transform_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            transform_1.filter_type = 'NEAREST'
-            transform_1.hide = False
-            transform_1.location = (100.0, -40.0)
-            transform_1.mute = False
-            transform_1.name = 'Transform'
-            transform_1.use_custom_color = False
-            transform_1.width = 140.0
-            transform_1.inputs[0].default_value = (0.800000011920929, 0.800000011920929, 0.800000011920929, 1.0)
-            transform_1.inputs[1].default_value = 0.0
-            transform_1.inputs[2].default_value = 0.0
-            transform_1.inputs[3].default_value = 0.7853981852531433
-            transform_1.inputs[4].default_value = 1.399999976158142
-            transform_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
-
-            math_003_1 = node_tree1.nodes.new('CompositorNodeMath')
-            math_003_1.parent = node_tree1.nodes.get('Frame.003')
-            math_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            math_003_1.hide = True
-            math_003_1.location = (-136.178955078125, -111.76119995117188)
-            math_003_1.mute = False
-            math_003_1.name = 'Math.003'
-            math_003_1.operation = 'MULTIPLY'
-            math_003_1.use_clamp = False
-            math_003_1.use_custom_color = False
-            math_003_1.width = 140.0
-            math_003_1.inputs[0].default_value = 1.0
-            math_003_1.inputs[1].default_value = 0.0010000000474974513
-            math_003_1.inputs[2].default_value = 0.0
-            math_003_1.outputs[0].default_value = 0.0
+            mix_004_1 = node_tree1.nodes.new('CompositorNodeMixRGB')
+            mix_004_1.parent = node_tree1.nodes.get('Frame.002')
+            mix_004_1.blend_type = 'DARKEN'
+            mix_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            mix_004_1.hide = True
+            mix_004_1.location = (300.0, -180.0)
+            mix_004_1.mute = False
+            mix_004_1.name = 'Mix.004'
+            mix_004_1.use_alpha = False
+            mix_004_1.use_clamp = False
+            mix_004_1.use_custom_color = False
+            mix_004_1.width = 140.0
+            mix_004_1.inputs[0].default_value = 1.0
+            mix_004_1.inputs[1].default_value = (1.0, 1.0, 1.0, 1.0)
+            mix_004_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
+            mix_004_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             # LINKS
             node_tree1.links.new(colorramp_1.outputs[0], rgb_curves_007_1.inputs[1])
@@ -2055,7 +2055,7 @@ class WatermarkPlus:
         watermark_0.width = 230.7401123046875
         watermark_0.inputs[0].default_value = (0.0, 0.0, 0.0, 1.0)
         watermark_0.inputs[1].default_value = (0.0, 0.0, 0.0, 1.0)
-        watermark_0.inputs[2].default_value = 1.0
+        watermark_0.inputs[2].default_value = 0.5
         watermark_0.inputs[3].default_value = 0.7853981852531433
         watermark_0.inputs[4].default_value = 0.0
         watermark_0.inputs[5].default_value = 0.0
