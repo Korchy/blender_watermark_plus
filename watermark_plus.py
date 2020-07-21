@@ -37,10 +37,10 @@ class WatermarkPlus:
             scene.node_tree.links.new(watermark_nodegroup.outputs['Image'], viewer_node.inputs['Image'])
         # add watermark image
         watermark_img_path = None
-        if context.preferences.addons[__package__].preferences.user_watermark_path \
-                and os.path.exists(context.preferences.addons[__package__].preferences.user_watermark_path) \
-                and os.path.isfile(context.preferences.addons[__package__].preferences.user_watermark_path):
-            watermark_img_path = context.preferences.addons[__package__].preferences.user_watermark_path
+        if context.preferences.addons[__package__].preferences.user_watermark_path:
+            watermark_img_abs_path = cls._abs_path(bpy_data=bpy_data, path=context.preferences.addons[__package__].preferences.user_watermark_path)
+            if os.path.exists(watermark_img_abs_path) and os.path.isfile(watermark_img_abs_path):
+                watermark_img_path = watermark_img_abs_path
         watermark_img = cls._load_watermark_img(bpy_data=bpy_data, path=watermark_img_path)
         if watermark_img:
             image_node.image = watermark_img
@@ -49,7 +49,7 @@ class WatermarkPlus:
     def _load_watermark_img(cls, bpy_data, path=None):
         # load watermark img
         if path:
-            watermark_img = bpy_data.images.load(os.path.abspath(path))
+            watermark_img = bpy_data.images.load(cls._abs_path(bpy_data=bpy_data, path=path))
         else:
             watermark_img = bpy_data.images.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), cls._watermark_image))
         return watermark_img
@@ -2089,3 +2089,12 @@ class WatermarkPlus:
     def _viewer_node(scene):
         # get viewer node
         return next((node for node in scene.node_tree.nodes if node.bl_idname == 'CompositorNodeViewer'), None)
+
+    @staticmethod
+    def _abs_path(bpy_data, path):
+        # returns absolute file path from path
+        if path[:2] == '//':
+            return os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(bpy_data.filepath)), path[2:]))
+        else:
+            return os.path.abspath(path)
+
