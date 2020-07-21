@@ -6,6 +6,7 @@
 
 from . import watermark_plus_ops
 from . import watermark_plus_panel
+from . import watermark_plus_preferences
 from .addon import Addon
 
 
@@ -24,6 +25,7 @@ bl_info = {
 
 def register():
     if not Addon.dev_mode():
+        watermark_plus_preferences.register()
         watermark_plus_ops.register()
         watermark_plus_panel.register()
     else:
@@ -34,6 +36,7 @@ def unregister():
     if not Addon.dev_mode():
         watermark_plus_panel.unregister()
         watermark_plus_ops.unregister()
+        watermark_plus_preferences.unregister()
 
 
 if __name__ == '__main__':

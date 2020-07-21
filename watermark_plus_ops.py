@@ -28,6 +28,7 @@ class WATERMARK_PLUS_OT_add_watermark(Operator):
     def execute(self, context):
         # add watermark
         WatermarkPlus.add_watermark(
+            context=context,
             scene=context.scene,
             bpy_data=bpy.data,
             level=self.level
