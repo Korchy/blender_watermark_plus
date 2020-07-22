@@ -33,10 +33,13 @@ Installation
 - Download the *.zip archive with the add-on distributive.
 - The “Preferences” window — Add-ons — Install… — specify the downloaded archive.
 
-
 Support
 -
 You can <a href='https://www.patreon.com/interplanety' target='_blank'>support my projects on Patreon</a>
+
+Special thanks
+-
+Many thanks to <a href="http://dezigner.tilda.ws/">Yuriy Tudgin</a> for node tress setups and demonstration workflow process.
 
 Version history
 -
