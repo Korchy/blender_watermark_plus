@@ -39,7 +39,7 @@ You can <a href='https://www.patreon.com/interplanety' target='_blank'>support m
 
 Special thanks
 -
-Many thanks to <a href="http://dezigner.tilda.ws/">Yuriy Tudgin</a> for node tress setups and demonstration workflow process.
+Many thanks to <a href="http://dezigner.tilda.ws/">Yuriy Tudgin</a> for node tree setups and demonstration workflow process.
 
 Version history
 -
