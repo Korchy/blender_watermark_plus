@@ -457,7 +457,7 @@ class WatermarkPlus:
             frame_1.name = 'Frame'
             frame_1.shrink = True
             frame_1.use_custom_color = False
-            frame_1.width = 1304.2984619140625
+            frame_1.width = 1304.5775146484375
 
             frame_003_1 = node_tree1.nodes.new('NodeFrame')
             frame_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -469,7 +469,7 @@ class WatermarkPlus:
             frame_003_1.name = 'Frame.003'
             frame_003_1.shrink = True
             frame_003_1.use_custom_color = False
-            frame_003_1.width = 380.0
+            frame_003_1.width = 440.279052734375
 
             frame_004_1 = node_tree1.nodes.new('NodeFrame')
             frame_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -481,7 +481,7 @@ class WatermarkPlus:
             frame_004_1.name = 'Frame.004'
             frame_004_1.shrink = True
             frame_004_1.use_custom_color = False
-            frame_004_1.width = 372.477783203125
+            frame_004_1.width = 372.7568359375
 
             frame_002_1 = node_tree1.nodes.new('NodeFrame')
             frame_002_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -493,7 +493,7 @@ class WatermarkPlus:
             frame_002_1.name = 'Frame.002'
             frame_002_1.shrink = True
             frame_002_1.use_custom_color = False
-            frame_002_1.width = 758.63525390625
+            frame_002_1.width = 758.9142456054688
 
             frame_001_1 = node_tree1.nodes.new('NodeFrame')
             frame_001_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -505,7 +505,7 @@ class WatermarkPlus:
             frame_001_1.name = 'Frame.001'
             frame_001_1.shrink = True
             frame_001_1.use_custom_color = False
-            frame_001_1.width = 372.8358154296875
+            frame_001_1.width = 373.1148681640625
 
             transform_1 = node_tree1.nodes.new('NodeFrame')
             transform_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -517,7 +517,7 @@ class WatermarkPlus:
             transform_1.name = 'transform'
             transform_1.shrink = True
             transform_1.use_custom_color = False
-            transform_1.width = 782.149169921875
+            transform_1.width = 782.42822265625
 
             colorramp_004_1 = node_tree1.nodes.new('CompositorNodeValToRGB')
             colorramp_004_1.parent = node_tree1.nodes.get('Frame')
@@ -1682,6 +1682,22 @@ class WatermarkPlus:
             mix_008_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_008_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
+            math_003_1 = node_tree1.nodes.new('CompositorNodeMath')
+            math_003_1.parent = node_tree1.nodes.get('Frame.003')
+            math_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            math_003_1.hide = True
+            math_003_1.location = (-136.178955078125, -111.76119995117188)
+            math_003_1.mute = False
+            math_003_1.name = 'Math.003'
+            math_003_1.operation = 'MULTIPLY'
+            math_003_1.use_clamp = False
+            math_003_1.use_custom_color = False
+            math_003_1.width = 140.0
+            math_003_1.inputs[0].default_value = 1.0
+            math_003_1.inputs[1].default_value = 0.10000000149011612
+            math_003_1.inputs[2].default_value = 0.0
+            math_003_1.outputs[0].default_value = 0.0
+
             mix_011_1 = node_tree1.nodes.new('CompositorNodeMixRGB')
             mix_011_1.parent = node_tree1.nodes.get('Frame.003')
             mix_011_1.blend_type = 'MULTIPLY'
@@ -1715,22 +1731,6 @@ class WatermarkPlus:
             mix_012_1.inputs[1].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_012_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_012_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
-
-            math_004_1 = node_tree1.nodes.new('CompositorNodeMath')
-            math_004_1.parent = node_tree1.nodes.get('Frame.004')
-            math_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            math_004_1.hide = True
-            math_004_1.location = (20.0, -40.0)
-            math_004_1.mute = False
-            math_004_1.name = 'Math.004'
-            math_004_1.operation = 'MULTIPLY'
-            math_004_1.use_clamp = False
-            math_004_1.use_custom_color = False
-            math_004_1.width = 140.0
-            math_004_1.inputs[0].default_value = 0.0
-            math_004_1.inputs[1].default_value = 0.10000000149011612
-            math_004_1.inputs[2].default_value = 0.0
-            math_004_1.outputs[0].default_value = 0.0
 
             group_input_1 = node_tree1.nodes.new('NodeGroupInput')
             group_input_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1924,21 +1924,21 @@ class WatermarkPlus:
             mix_004_1.inputs[2].default_value = (1.0, 1.0, 1.0, 1.0)
             mix_004_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            math_003_1 = node_tree1.nodes.new('CompositorNodeMath')
-            math_003_1.parent = node_tree1.nodes.get('Frame.003')
-            math_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
-            math_003_1.hide = True
-            math_003_1.location = (-76.178955078125, -71.76119995117188)
-            math_003_1.mute = False
-            math_003_1.name = 'Math.003'
-            math_003_1.operation = 'MULTIPLY'
-            math_003_1.use_clamp = False
-            math_003_1.use_custom_color = False
-            math_003_1.width = 140.0
-            math_003_1.inputs[0].default_value = 1.0
-            math_003_1.inputs[1].default_value = 0.0010000000474974513
-            math_003_1.inputs[2].default_value = 0.0
-            math_003_1.outputs[0].default_value = 0.0
+            math_004_1 = node_tree1.nodes.new('CompositorNodeMath')
+            math_004_1.parent = node_tree1.nodes.get('Frame.004')
+            math_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
+            math_004_1.hide = True
+            math_004_1.location = (20.0, -40.0)
+            math_004_1.mute = False
+            math_004_1.name = 'Math.004'
+            math_004_1.operation = 'MULTIPLY'
+            math_004_1.use_clamp = False
+            math_004_1.use_custom_color = False
+            math_004_1.width = 140.0
+            math_004_1.inputs[0].default_value = 0.0
+            math_004_1.inputs[1].default_value = 0.05000000074505806
+            math_004_1.inputs[2].default_value = 0.0
+            math_004_1.outputs[0].default_value = 0.0
 
             # LINKS
             node_tree1.links.new(colorramp_1.outputs[0], rgb_curves_007_1.inputs[1])
