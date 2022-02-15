@@ -18,11 +18,11 @@ https://www.youtube.com/watch?v=13dRGjgYQ-E
 
 Current add-on version
 -
-1.0.1.
+1.1.0.
 
 Blender versions
 -
-2.83, 2.90, 2.91
+2.83, 2.90, 2.91, 2.92, 2.93, 3.0, 3.1, 3.2
 
 Location and call
 -
@@ -43,6 +43,9 @@ Many thanks to <a href="http://dezigner.tilda.ws/">Yuriy Tudgin</a> for node tre
 
 Version history
 -
+1.1.0.
+- Optionally registering the add-on panel in the 3D Viewport area
+
 1.0.1.
 - Change Watermark Lv2 for proper work with Blender 2.9x
 
