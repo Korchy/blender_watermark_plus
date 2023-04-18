@@ -674,10 +674,10 @@ class WatermarkPlus:
             colorramp_003_1.color_ramp.elements[1].color = (0.0, 0.0, 0.0, 1.0)
             colorramp_003_1.color_ramp.elements[1].position = 0.75
             if 2 >= len(colorramp_003_1.color_ramp.elements):
-                colorramp_003_1.color_ramp.elements.new(1.0)
+                colorramp_003_1.color_ramp.elements.new(0.9)
             colorramp_003_1.color_ramp.elements[2].alpha = 1.0
             colorramp_003_1.color_ramp.elements[2].color = (1.0, 1.0, 1.0, 1.0)
-            colorramp_003_1.color_ramp.elements[2].position = 1.0
+            colorramp_003_1.color_ramp.elements[2].position = 0.9
             colorramp_003_1.color_ramp.hue_interpolation = 'NEAR'
             colorramp_003_1.color_ramp.interpolation = 'CONSTANT'
             colorramp_003_1.hide = True
