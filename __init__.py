@@ -14,7 +14,7 @@ bl_info = {
     'name': 'Watermark Plus',
     'category': 'All',
     'author': 'Nikita Akimov',
-    'version': (1, 1, 1),
+    'version': (1, 1, 2),
     'blender': (2, 83, 0),
     'location': 'N-Panel - Watermark Plus',
     'wiki_url': 'https://b3d.interplanety.org/en/blender-add-on-watermark-plus/',

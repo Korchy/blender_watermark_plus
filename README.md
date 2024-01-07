@@ -18,11 +18,11 @@ https://www.youtube.com/watch?v=13dRGjgYQ-E
 
 Current add-on version
 -
-1.1.1.
+1.1.2.
 
 Blender versions
 -
-2.83, 2.93, 3.3, 3.4, 3.5, 3.6
+2.83, 2.93, 3.0, 3.3, 3.6, 4.0
 
 Location and call
 -
@@ -43,6 +43,9 @@ Many thanks to <a href="http://dezigner.tilda.ws/">Yuriy Tudgin</a> for node tre
 
 Version history
 -
+1.1.2.
+- Updated for compatibility with Blender 4.0
+
 1.1.1.
 - Fixed nodes for Level 2 watermark
 

@@ -5,6 +5,7 @@
 #   https://github.com/Korchy/blender_watermark_plus
 
 import os
+import bpy
 
 
 class WatermarkPlus:
@@ -68,19 +69,79 @@ class WatermarkPlus:
         node_tree1 = bpy_data.node_groups.get('Watermark Level 1')
         if not node_tree1:
             node_tree1 = bpy_data.node_groups.new('Watermark Level 1', 'CompositorNodeTree')
-            # INPUTS
-            node_tree1.inputs.new('NodeSocketColor', 'Render Layers')
-            node_tree1.inputs.new('NodeSocketColor', 'Watermark Image')
-            node_tree1.inputs.new('NodeSocketFloat', 'Scale')
-            node_tree1.inputs.new('NodeSocketFloatAngle', 'Rotation (deg)')
-            node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
-            node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
-            node_tree1.inputs.new('NodeSocketFloat', 'White')
-            node_tree1.inputs.new('NodeSocketFloat', 'Black')
-            node_tree1.inputs.new('NodeSocketFloat', 'White/Black')
-            # OUTPUTS
-            node_tree1.outputs.new('NodeSocketColor', 'Image')
+            if bpy.app.version < (4, 0, 0):
+                # INPUTS
+                node_tree1.inputs.new('NodeSocketColor', 'Render Layers')
+                node_tree1.inputs.new('NodeSocketColor', 'Watermark Image')
+                node_tree1.inputs.new('NodeSocketFloat', 'Scale')
+                node_tree1.inputs.new('NodeSocketFloatAngle', 'Rotation (deg)')
+                node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
+                node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
+                node_tree1.inputs.new('NodeSocketFloat', 'White')
+                node_tree1.inputs.new('NodeSocketFloat', 'Black')
+                node_tree1.inputs.new('NodeSocketFloat', 'White/Black')
+                # OUTPUTS
+                node_tree1.outputs.new('NodeSocketColor', 'Image')
+            else:
+                # INPUTS
+                node_tree1.interface.new_socket(
+                    name='Render Layers',
+                    in_out='INPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='Watermark Image',
+                    in_out='INPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='Scale',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                socket = node_tree1.interface.new_socket(
+                    name='Rotation (deg)',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat',
+                )
+                socket.subtype = 'ANGLE'
+                node_tree1.interface.new_socket(
+                    name='Offset X',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Offset Y',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='White',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Black',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='White/Black',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                # OUTPUTS
+                node_tree1.interface.new_socket(
+                    name='Image',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
             # NODES
             area_influence_1 = node_tree1.nodes.new('NodeFrame')
             area_influence_1.color = (0.0, 0.7469902038574219, 1.0)
@@ -428,31 +489,153 @@ class WatermarkPlus:
         node_tree1 = bpy_data.node_groups.get('Watermark Level 2')
         if not node_tree1:
             node_tree1 = bpy_data.node_groups.new('Watermark Level 2', 'CompositorNodeTree')
-            # INPUTS
-            node_tree1.inputs.new('NodeSocketColor', 'Render Layers')
-            node_tree1.inputs.new('NodeSocketColor', 'Watermark Image')
-            node_tree1.inputs.new('NodeSocketFloat', 'Scale')
-            node_tree1.inputs.new('NodeSocketFloatAngle', 'Rotation (deg)')
-            node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
-            node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
-            node_tree1.inputs.new('NodeSocketFloat', 'Blur')
-            node_tree1.inputs.new('NodeSocketShader', '# Additional params')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 0-25% ')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 25-50%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 50-75%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 75-98%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Intensity 98-100%')
-            node_tree1.inputs.new('NodeSocketFloat', 'Multiply Effect')
-            node_tree1.inputs.new('NodeSocketFloat', 'Blur Mask')
-            # OUTPUTS
-            node_tree1.outputs.new('NodeSocketColor', 'Image')
-            node_tree1.outputs.new('NodeSocketShader', '# Additional params')
-            node_tree1.outputs.new('NodeSocketColor', '0-25')
-            node_tree1.outputs.new('NodeSocketColor', '25-50')
-            node_tree1.outputs.new('NodeSocketColor', '50-75')
-            node_tree1.outputs.new('NodeSocketColor', '75-98')
-            node_tree1.outputs.new('NodeSocketColor', '98-100')
+            if bpy.app.version < (4, 0, 0):
+                # INPUTS
+                node_tree1.inputs.new('NodeSocketColor', 'Render Layers')
+                node_tree1.inputs.new('NodeSocketColor', 'Watermark Image')
+                node_tree1.inputs.new('NodeSocketFloat', 'Scale')
+                node_tree1.inputs.new('NodeSocketFloatAngle', 'Rotation (deg)')
+                node_tree1.inputs.new('NodeSocketFloat', 'Offset X')
+                node_tree1.inputs.new('NodeSocketFloat', 'Offset Y')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity')
+                node_tree1.inputs.new('NodeSocketFloat', 'Blur')
+                node_tree1.inputs.new('NodeSocketShader', '# Additional params')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity 0-25% ')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity 25-50%')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity 50-75%')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity 75-98%')
+                node_tree1.inputs.new('NodeSocketFloat', 'Intensity 98-100%')
+                node_tree1.inputs.new('NodeSocketFloat', 'Multiply Effect')
+                node_tree1.inputs.new('NodeSocketFloat', 'Blur Mask')
+                # OUTPUTS
+                node_tree1.outputs.new('NodeSocketColor', 'Image')
+                node_tree1.outputs.new('NodeSocketShader', '# Additional params')
+                node_tree1.outputs.new('NodeSocketColor', '0-25')
+                node_tree1.outputs.new('NodeSocketColor', '25-50')
+                node_tree1.outputs.new('NodeSocketColor', '50-75')
+                node_tree1.outputs.new('NodeSocketColor', '75-98')
+                node_tree1.outputs.new('NodeSocketColor', '98-100')
+            else:
+                # INPUTS
+                node_tree1.interface.new_socket(
+                    name='Render Layers',
+                    in_out='INPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='Watermark Image',
+                    in_out='INPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='Scale',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                socket = node_tree1.interface.new_socket(
+                    name='Rotation (deg)',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                socket.subtype = 'ANGLE'
+                node_tree1.interface.new_socket(
+                    name='Offset X',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Offset Y',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Blur',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                socket = node_tree1.interface.new_socket(
+                    name='# Additional params',
+                    in_out='INPUT',
+                    socket_type='NodeSocketVector'
+                )
+                socket.hide_value = True
+                node_tree1.interface.new_socket(
+                    name='Intensity 0-25%',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity 25-50%',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity 50-75%',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity 75-98%',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Intensity 98-100%',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Multiply Effect',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                node_tree1.interface.new_socket(
+                    name='Blur Mask',
+                    in_out='INPUT',
+                    socket_type='NodeSocketFloat'
+                )
+                # OUTPUTS
+                node_tree1.interface.new_socket(
+                    name='Image',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='# Additional params',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketVector'
+                )
+                node_tree1.interface.new_socket(
+                    name='0-25',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='25-50',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='50-75',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='75-98',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+                node_tree1.interface.new_socket(
+                    name='98-100',
+                    in_out='OUTPUT',
+                    socket_type='NodeSocketColor'
+                )
+
             # NODES
             frame_1 = node_tree1.nodes.new('NodeFrame')
             frame_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
@@ -1488,10 +1671,24 @@ class WatermarkPlus:
             node_tree2 = bpy_data.node_groups.get('NodeGroup')
             if not node_tree2:
                 node_tree2 = bpy_data.node_groups.new('NodeGroup', 'CompositorNodeTree')
-                # INPUTS
-                node_tree2.inputs.new('NodeSocketColor', 'Color')
-                # OUTPUTS
-                node_tree2.outputs.new('NodeSocketColor', 'Image')
+                if bpy.app.version < (4, 0, 0):
+                    # INPUTS
+                    node_tree2.inputs.new('NodeSocketColor', 'Color')
+                    # OUTPUTS
+                    node_tree2.outputs.new('NodeSocketColor', 'Image')
+                else:
+                    # INPUTS
+                    node_tree2.interface.new_socket(
+                        name='Color',
+                        in_out='INPUT',
+                        socket_type='NodeSocketColor'
+                    )
+                    # OUTPUTS
+                    node_tree2.interface.new_socket(
+                        name='Image',
+                        in_out='OUTPUT',
+                        socket_type='NodeSocketColor'
+                    )
                 # NODES
                 group_input_2 = node_tree2.nodes.new('NodeGroupInput')
                 group_input_2.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
