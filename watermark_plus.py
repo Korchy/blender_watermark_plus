@@ -1668,9 +1668,9 @@ class WatermarkPlus:
             invert_005_1.inputs[1].default_value = (1.0, 1.0, 1.0, 1.0)
             invert_005_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
-            node_tree2 = bpy_data.node_groups.get('NodeGroup')
+            node_tree2 = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             if not node_tree2:
-                node_tree2 = bpy_data.node_groups.new('NodeGroup', 'CompositorNodeTree')
+                node_tree2 = bpy_data.node_groups.new('watermark_plus_lv2_additional_group', 'CompositorNodeTree')
                 if bpy.app.version < (4, 0, 0):
                     # INPUTS
                     node_tree2.inputs.new('NodeSocketColor', 'Color')
@@ -1743,7 +1743,7 @@ class WatermarkPlus:
                 node_tree2.links.new(invert_2.outputs[0], set_alpha_2.inputs[1])
 
             group_1 = node_tree1.nodes.new('CompositorNodeGroup')
-            group_1.node_tree = bpy_data.node_groups.get('NodeGroup')
+            group_1.node_tree = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             group_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             group_1.hide = True
             group_1.location = (1647.4029541015625, 0.0)
@@ -1755,7 +1755,7 @@ class WatermarkPlus:
             group_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             group_001_1 = node_tree1.nodes.new('CompositorNodeGroup')
-            group_001_1.node_tree = bpy_data.node_groups.get('NodeGroup')
+            group_001_1.node_tree = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             group_001_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             group_001_1.hide = True
             group_001_1.location = (1647.4029541015625, -45.13432693481445)
@@ -1767,7 +1767,7 @@ class WatermarkPlus:
             group_001_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             group_002_1 = node_tree1.nodes.new('CompositorNodeGroup')
-            group_002_1.node_tree = bpy_data.node_groups.get('NodeGroup')
+            group_002_1.node_tree = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             group_002_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             group_002_1.hide = True
             group_002_1.location = (1647.4029541015625, -90.2686538696289)
@@ -1779,7 +1779,7 @@ class WatermarkPlus:
             group_002_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             group_003_1 = node_tree1.nodes.new('CompositorNodeGroup')
-            group_003_1.node_tree = bpy_data.node_groups.get('NodeGroup')
+            group_003_1.node_tree = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             group_003_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             group_003_1.hide = True
             group_003_1.location = (1647.4029541015625, -135.40298461914062)
@@ -1791,7 +1791,7 @@ class WatermarkPlus:
             group_003_1.outputs[0].default_value = (0.0, 0.0, 0.0, 0.0)
 
             group_004_1 = node_tree1.nodes.new('CompositorNodeGroup')
-            group_004_1.node_tree = bpy_data.node_groups.get('NodeGroup')
+            group_004_1.node_tree = bpy_data.node_groups.get('watermark_plus_lv2_additional_group')
             group_004_1.color = (0.6079999804496765, 0.6079999804496765, 0.6079999804496765)
             group_004_1.hide = True
             group_004_1.location = (1647.4029541015625, -180.5373077392578)
